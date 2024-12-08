@@ -1,4 +1,3 @@
-import Catalog from "../../features/catalog/catalog";
 import {
 	Container,
 	createTheme,
@@ -7,6 +6,9 @@ import {
 } from "@mui/material";
 import Header from "./Header";
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/ReactToastify.css";
 
 function App() {
 	const [darkMode, setDarkMode] = useState(false);
@@ -23,13 +25,12 @@ function App() {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<div>
-				<CssBaseline />
-				<Header switchTheme={() => setDarkMode(!darkMode)} />
-				<Container>
-					<Catalog />
-				</Container>
-			</div>
+			<ToastContainer position="bottom-right" theme="colored" />
+			<CssBaseline />
+			<Header switchTheme={() => setDarkMode(!darkMode)} />
+			<Container>
+				<Outlet />
+			</Container>
 		</ThemeProvider>
 	);
 }
